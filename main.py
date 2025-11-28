@@ -63,7 +63,6 @@ def get_sessions():
     try:
         url = f"{BASE_URL}/get-sessions?user_id={USER_ID}"
         response = requests.get(url)
-        # print(response.json())
         return response.json().get("data", [])
     except:
         return []
@@ -165,20 +164,17 @@ for msg in st.session_state.messages:
 st.markdown("---")
 
 # -------------------------
-# MESSAGE INPUT
+# MESSAGE INPUT (using st.text_input for Enter to trigger)
 # -------------------------
-user_input = st.text_area("Write your message:", height=120)
+user_input = st.text_input("Write your message:")
 
-if st.button("Send"):
-    if user_input.strip():
-        # Append user message to UI
-        st.session_state.messages.append({
-            "user_message": user_input,
-            "ai_response": None
-        })
+if user_input.strip():
+    # Send the message when Enter is pressed
+    ai_response = send_message(st.session_state.current_session_id, user_input)
 
-        ai_response = send_message(st.session_state.current_session_id, user_input)
-
-        # Append AI response
-        st.session_state.messages[-1]["ai_response"] = ai_response
-        st.rerun()
+    # Append user message and AI response to the chat history
+    st.session_state.messages.append({
+        "user_message": user_input,
+        "ai_response": ai_response
+    })
+    st.rerun()
