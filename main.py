@@ -178,3 +178,4 @@ if user_input.strip():
         "ai_response": ai_response
     })
     st.rerun()
+
