@@ -43,20 +43,93 @@ st.set_page_config(
 # ----------------------------- 
 st.markdown("""
 <style>
+    /* Light background for main chat area */
+    .main {
+        background-color: #f8f9fa;
+    }
+    
+    .stApp {
+        background-color: #f8f9fa;
+    }
+    
+    /* User message bubble */
     .user-message {
         background-color: #e3f2fd;
+        padding: 14px 18px;
+        border-radius: 16px;
+        margin: 12px 0;
+        border-left: 5px solid #2196f3;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    
+    /* AI message bubble */
+    .ai-message {
+        background-color: #ffffff;
+        padding: 14px 18px;
+        border-radius: 16px;
+        margin: 12px 0;
+        border-left: 5px solid #4caf50;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    
+    /* Colored content blocks */
+    .block-info {
+        background-color: #e3f2fd;
         padding: 12px 16px;
-        border-radius: 12px;
-        margin: 8px 0;
+        border-radius: 8px;
+        margin: 10px 0;
         border-left: 4px solid #2196f3;
     }
-    .ai-message {
-        background-color: #f5f5f5;
+    
+    .block-success {
+        background-color: #e8f5e9;
         padding: 12px 16px;
-        border-radius: 12px;
-        margin: 8px 0;
+        border-radius: 8px;
+        margin: 10px 0;
         border-left: 4px solid #4caf50;
     }
+    
+    .block-warning {
+        background-color: #fff3e0;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #ff9800;
+    }
+    
+    .block-danger {
+        background-color: #ffebee;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #f44336;
+    }
+    
+    .block-primary {
+        background-color: #f3e5f5;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #9c27b0;
+    }
+    
+    .block-secondary {
+        background-color: #f5f5f5;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #757575;
+    }
+    
+    /* Text colors */
+    .text-info { color: #0277bd; font-weight: 500; }
+    .text-success { color: #2e7d32; font-weight: 500; }
+    .text-warning { color: #f57c00; font-weight: 500; }
+    .text-danger { color: #c62828; font-weight: 500; }
+    .text-primary { color: #6a1b9a; font-weight: 500; }
+    .text-muted { color: #757575; }
+    
+    /* Typography */
     .ai-message ul, .ai-message ol {
         margin: 10px 0;
         padding-left: 20px;
@@ -66,6 +139,7 @@ st.markdown("""
     }
     .ai-message p {
         margin: 8px 0;
+        line-height: 1.6;
     }
     .ai-message strong {
         font-weight: 600;
@@ -77,7 +151,20 @@ st.markdown("""
     .ai-message h1, .ai-message h2, .ai-message h3 {
         margin-top: 16px;
         margin-bottom: 8px;
+        color: #2c3e50;
     }
+    
+    /* Inline highlights */
+    .highlight {
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+    .highlight-blue { background-color: #bbdefb; color: #0d47a1; }
+    .highlight-green { background-color: #c8e6c9; color: #1b5e20; }
+    .highlight-yellow { background-color: #fff9c4; color: #f57f17; }
+    .highlight-red { background-color: #ffcdd2; color: #b71c1c; }
+    .highlight-purple { background-color: #e1bee7; color: #4a148c; }
 </style>
 """, unsafe_allow_html=True)
 
