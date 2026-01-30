@@ -36,21 +36,22 @@ st.set_page_config(
 )
 
 # -----------------------------
-# HOLIYA THEME STYLES
+# HOLIYA THEME (TEXT COLOR FOCUSED)
 # -----------------------------
 st.markdown("""
 <style>
 
 /* ---------- APP BACKGROUND ---------- */
 .main, .stApp {
-    background-color: #F7F3EF;
-    color: #3E3A37;
+    background-color: #F7F3EF;     /* warm beige */
+    color: #5F5A54;                /* default body text */
     font-family: 'Inter', sans-serif;
 }
 
 /* ---------- SIDEBAR ---------- */
 section[data-testid="stSidebar"] {
     background-color: #EFE9E4;
+    color: #3E3A37;
 }
 
 /* ---------- USER MESSAGE ---------- */
@@ -66,89 +67,83 @@ section[data-testid="stSidebar"] {
 /* ---------- AI MESSAGE ---------- */
 .ai-message {
     background-color: #FFFFFF;
-    padding: 18px 22px;
+    padding: 22px;
     border-radius: 18px;
     margin: 14px 0;
     border-left: 5px solid #8A9A5B;
-    color: #3E3A37;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    color: #5F5A54;
 }
 
-/* ---------- CONTENT BLOCKS ---------- */
+/* ---------- TEXT HIERARCHY ---------- */
+.ai-message h1 {
+    color: #3B3A36;                /* strong heading */
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.ai-message h2 {
+    color: #4A4A45;
+    font-weight: 700;
+}
+
+.ai-message h3 {
+    color: #4A4A45;
+    font-weight: 600;
+}
+
+.ai-message p {
+    color: #5F5A54;                /* soft paragraph */
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.ai-message ul,
+.ai-message ol {
+    padding-left: 20px;
+}
+
+.ai-message li {
+    color: #5F5A54;
+    line-height: 1.7;
+}
+
+/* Emphasis */
+.ai-message strong {
+    color: #2F2E2B;
+}
+
+/* ---------- OPTIONAL BLOCKS ---------- */
 .block-info {
     background-color: #EEF3F6;
-    padding: 14px 18px;
-    border-radius: 14px;
-    margin: 12px 0;
     border-left: 4px solid #A3B6C4;
+    color: #5F5A54;
 }
 
 .block-success {
     background-color: #E4EFE6;
-    padding: 14px 18px;
-    border-radius: 14px;
-    margin: 12px 0;
     border-left: 4px solid #8A9A5B;
+    color: #5F5A54;
 }
 
 .block-warning {
     background-color: #F8EEE6;
-    padding: 14px 18px;
-    border-radius: 14px;
-    margin: 12px 0;
     border-left: 4px solid #C8A27A;
+    color: #5F5A54;
 }
 
 .block-danger {
     background-color: #F6E6E6;
-    padding: 14px 18px;
-    border-radius: 14px;
-    margin: 12px 0;
     border-left: 4px solid #C28B8B;
-}
-
-/* ---------- HEADINGS ---------- */
-.ai-message h1,
-.ai-message h2,
-.ai-message h3 {
-    color: #3E3A37;
-    font-weight: 700;
-}
-
-/* ---------- TYPOGRAPHY ---------- */
-p, li {
-    line-height: 1.75;
-    color: #3E3A37;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-/* ---------- INLINE HIGHLIGHTS ---------- */
-.highlight {
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-weight: 600;
-}
-
-.highlight-green {
-    background-color: #DDE8DF;
-}
-
-.highlight-orange {
-    background-color: #F3E2D3;
-}
-
-.highlight-red {
-    background-color: #EED6D6;
+    color: #5F5A54;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# HELPER FUNCTIONS
+# MARKDOWN → HTML (UNCHANGED)
 # -----------------------------
 def is_html(text):
     return bool(re.search(r'<[^>]+>', text))
@@ -156,11 +151,17 @@ def is_html(text):
 def markdown_to_html(text):
     if not text:
         return ""
-    text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
-    text = re.sub(r'\*(.*?)\*', r'<em>\1</em>', text)
-    text = re.sub(r'^### (.*)', r'<h3>\1</h3>', text, flags=re.MULTILINE)
-    text = re.sub(r'^## (.*)', r'<h2>\1</h2>', text, flags=re.MULTILINE)
-    text = re.sub(r'^# (.*)', r'<h1>\1</h1>', text, flags=re.MULTILINE)
+
+    # Headers
+    text = re.sub(r'^### (.+)$', r'<h3>\1</h3>', text, flags=re.MULTILINE)
+    text = re.sub(r'^## (.+)$', r'<h2>\1</h2>', text, flags=re.MULTILINE)
+    text = re.sub(r'^# (.+)$', r'<h1>\1</h1>', text, flags=re.MULTILINE)
+
+    # Bold & italic
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
+
+    # Line breaks
     return text.replace("\n", "<br>")
 
 def render_message(text):
@@ -195,10 +196,10 @@ def send_message(session_id, user_message):
         r = requests.post(f"{BASE_URL}/ai-agent", json=payload)
         return r.json()["data"]["ai_response"]
     except:
-        return "<div class='block-danger'>⚠️ Unable to reach AI service.</div>"
+        return "⚠️ Unable to reach AI service."
 
 # -----------------------------
-# SESSION STATE INIT
+# SESSION STATE
 # -----------------------------
 if "current_session_id" not in st.session_state:
     st.session_state.current_session_id = None
@@ -228,7 +229,7 @@ for s in get_sessions():
 st.title("🩺 Holiya Medical AI Agent")
 
 if not st.session_state.current_session_id:
-    st.info("Please start or select a chat session.")
+    st.info("Create or select a chat session.")
     st.stop()
 
 st.caption(f"Session ID: `{st.session_state.current_session_id}`")
@@ -240,7 +241,7 @@ for msg in st.session_state.messages:
         unsafe_allow_html=True
     )
 
-    ai_html = render_message(msg['ai_response'])
+    ai_html = render_message(msg["ai_response"])
     st.markdown(
         f"<div class='ai-message'><strong>Holiya AI:</strong><br>{ai_html}</div>",
         unsafe_allow_html=True
