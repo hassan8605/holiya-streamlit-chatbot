@@ -61,7 +61,7 @@ section[data-testid="stSidebar"] {
     border-radius: 18px;
     margin: 14px 0;
     border-left: 5px solid #8A9A5B;
-    color: #3E3A37;
+    color: red;
 }
 
 /* ---------- AI MESSAGE ---------- */
