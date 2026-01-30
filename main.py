@@ -60,6 +60,7 @@ st.markdown("""
         margin: 12px 0;
         border-left: 5px solid #2196f3;
         box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        color: #1565c0;
     }
     
     /* AI message bubble */
@@ -72,99 +73,167 @@ st.markdown("""
         box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     }
     
-    /* Colored content blocks */
+    /* Colored content blocks with colored text */
     .block-info {
         background-color: #e3f2fd;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
         border-left: 4px solid #2196f3;
+        color: #0d47a1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     
     .block-success {
         background-color: #e8f5e9;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
         border-left: 4px solid #4caf50;
+        color: #1b5e20;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     
     .block-warning {
         background-color: #fff3e0;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
         border-left: 4px solid #ff9800;
+        color: #e65100;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     
     .block-danger {
         background-color: #ffebee;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
         border-left: 4px solid #f44336;
+        color: #b71c1c;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     
     .block-primary {
         background-color: #f3e5f5;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
         border-left: 4px solid #9c27b0;
+        color: #4a148c;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     
     .block-secondary {
         background-color: #f5f5f5;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 10px 0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
         border-left: 4px solid #757575;
+        color: #424242;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     
-    /* Text colors */
-    .text-info { color: #0277bd; font-weight: 500; }
-    .text-success { color: #2e7d32; font-weight: 500; }
-    .text-warning { color: #f57c00; font-weight: 500; }
-    .text-danger { color: #c62828; font-weight: 500; }
-    .text-primary { color: #6a1b9a; font-weight: 500; }
-    .text-muted { color: #757575; }
+    .block-teal {
+        background-color: #e0f2f1;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
+        border-left: 4px solid #009688;
+        color: #004d40;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+    
+    .block-indigo {
+        background-color: #e8eaf6;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin: 12px 0;
+        border-left: 4px solid #3f51b5;
+        color: #1a237e;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+    
+    /* Text colors for inline use */
+    .text-blue { color: #0d47a1; font-weight: 600; }
+    .text-green { color: #1b5e20; font-weight: 600; }
+    .text-orange { color: #e65100; font-weight: 600; }
+    .text-red { color: #b71c1c; font-weight: 600; }
+    .text-purple { color: #4a148c; font-weight: 600; }
+    .text-teal { color: #004d40; font-weight: 600; }
+    .text-indigo { color: #1a237e; font-weight: 600; }
+    .text-grey { color: #424242; font-weight: 500; }
     
     /* Typography */
-    .ai-message ul, .ai-message ol {
+    .ai-message ul, .ai-message ol,
+    .block-info ul, .block-info ol,
+    .block-success ul, .block-success ol,
+    .block-warning ul, .block-warning ol,
+    .block-danger ul, .block-danger ol,
+    .block-primary ul, .block-primary ol,
+    .block-secondary ul, .block-secondary ol,
+    .block-teal ul, .block-teal ol,
+    .block-indigo ul, .block-indigo ol {
         margin: 10px 0;
         padding-left: 20px;
     }
-    .ai-message li {
-        margin: 5px 0;
-    }
-    .ai-message p {
-        margin: 8px 0;
+    
+    .ai-message li,
+    .block-info li, .block-success li, .block-warning li,
+    .block-danger li, .block-primary li, .block-secondary li,
+    .block-teal li, .block-indigo li {
+        margin: 6px 0;
         line-height: 1.6;
     }
-    .ai-message strong {
-        font-weight: 600;
-        color: #1a1a1a;
+    
+    .ai-message p,
+    .block-info p, .block-success p, .block-warning p,
+    .block-danger p, .block-primary p, .block-secondary p,
+    .block-teal p, .block-indigo p {
+        margin: 8px 0;
+        line-height: 1.7;
     }
-    .ai-message em {
+    
+    .ai-message strong,
+    .block-info strong, .block-success strong, .block-warning strong,
+    .block-danger strong, .block-primary strong, .block-secondary strong,
+    .block-teal strong, .block-indigo strong {
+        font-weight: 700;
+    }
+    
+    .ai-message em,
+    .block-info em, .block-success em, .block-warning em,
+    .block-danger em, .block-primary em, .block-secondary em,
+    .block-teal em, .block-indigo em {
         font-style: italic;
     }
-    .ai-message h1, .ai-message h2, .ai-message h3 {
-        margin-top: 16px;
-        margin-bottom: 8px;
-        color: #2c3e50;
+    
+    .ai-message h1, .ai-message h2, .ai-message h3,
+    .block-info h1, .block-info h2, .block-info h3,
+    .block-success h1, .block-success h2, .block-success h3,
+    .block-warning h1, .block-warning h2, .block-warning h3,
+    .block-danger h1, .block-danger h2, .block-danger h3,
+    .block-primary h1, .block-primary h2, .block-primary h3,
+    .block-secondary h1, .block-secondary h2, .block-secondary h3,
+    .block-teal h1, .block-teal h2, .block-teal h3,
+    .block-indigo h1, .block-indigo h2, .block-indigo h3 {
+        margin-top: 14px;
+        margin-bottom: 10px;
+        font-weight: 700;
     }
     
     /* Inline highlights */
     .highlight {
-        padding: 2px 6px;
+        padding: 3px 8px;
         border-radius: 4px;
-        font-weight: 500;
+        font-weight: 600;
     }
     .highlight-blue { background-color: #bbdefb; color: #0d47a1; }
     .highlight-green { background-color: #c8e6c9; color: #1b5e20; }
-    .highlight-yellow { background-color: #fff9c4; color: #f57f17; }
+    .highlight-orange { background-color: #ffe0b2; color: #e65100; }
     .highlight-red { background-color: #ffcdd2; color: #b71c1c; }
     .highlight-purple { background-color: #e1bee7; color: #4a148c; }
+    .highlight-teal { background-color: #b2dfdb; color: #004d40; }
 </style>
 """, unsafe_allow_html=True)
 
