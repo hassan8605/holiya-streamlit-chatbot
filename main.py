@@ -6,7 +6,7 @@ import re
 # -----------------------------
 # PASSWORD PROTECTION
 # -----------------------------
-PASSWORD = "HoliyaAI"
+PASSWORD = "holiyaAI572"
 
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
@@ -61,7 +61,7 @@ section[data-testid="stSidebar"] {
     border-radius: 18px;
     margin: 14px 0;
     border-left: 5px solid #8A9A5B;
-    color: red;
+    color: #D1AB88;
 }
 
 /* ---------- AI MESSAGE ---------- */
@@ -72,7 +72,7 @@ section[data-testid="stSidebar"] {
     margin: 14px 0;
     border-left: 5px solid #8A9A5B;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    color: #5F5A54;
+    color: #AE7C49;
 }
 
 /* ---------- TEXT HIERARCHY ---------- */
